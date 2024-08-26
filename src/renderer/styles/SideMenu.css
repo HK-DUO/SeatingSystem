@@ -1,0 +1,7 @@
+.side-menu {
+  @apply w-[200px] h-full bg-deepBlue
+}
+.side-menu > div > a {
+  @apply block
+}
+
