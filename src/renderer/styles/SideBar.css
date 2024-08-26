@@ -1,0 +1,3 @@
+.side-bar {
+  @apply w-[220px] p-[10px] h-full bg-blue
+}
