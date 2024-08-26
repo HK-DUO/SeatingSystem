@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 #root{
-  @apply w-[900px] h-[680px]
+  @apply w-[1200px] h-[800px] text-black/60 font-[500]
 }
