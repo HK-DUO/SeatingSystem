@@ -24,3 +24,6 @@ yarn-error.log*
 
 # gitmessage
 .gitmessage.txt
+
+# idea
+.idea
