@@ -1,4 +1,5 @@
 // public/electron.js
+import connection from "../backend/db.js";
 const { app, BrowserWindow } = await import("electron");
 const path = await import("path");
 const isDev = await import("electron-is-dev");
@@ -33,6 +34,19 @@ function createWindow() {
     });
     mainWindow.focus();
 }
+
+app.whenReady().then(() => {
+  createWindow();
+
+  // Example: Query the database after creating the window
+  connection.query("SELECT * FROM Seat", (error, results) => {
+    if (error) {
+      console.error("Error fetching data:", error);
+    } else {
+      console.log("Seats:", results);
+    }
+  });
+});
 
 app.on("ready", createWindow);
 
