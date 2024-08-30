@@ -7,32 +7,31 @@ const isDev = await import("electron-is-dev");
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 828,
-        webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
-            devTools: isDev,
-        },
-    });
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 828,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      devTools: isDev,
+    },
+  });
 
-    // ***중요***
-    mainWindow.loadURL(
-        isDev
-            ? "http://localhost:3000"
-            : `file://${path.join(__dirname, "../build/index.html")}`
-    );
+  // ***중요***
+  mainWindow.loadURL(
+    isDev
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`
+  );
 
+  //   if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
 
-    //   if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
-
-    mainWindow.setResizable(true);
-    mainWindow.on("closed", () => {
-        mainWindow = null;
-        app.quit();
-    });
-    mainWindow.focus();
+  mainWindow.setResizable(true);
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+    app.quit();
+  });
+  mainWindow.focus();
 }
 
 app.whenReady().then(() => {
