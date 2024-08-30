@@ -1,9 +1,12 @@
-import SideBar from "../layouts/SideBar";
+import SideBar from "./SideBar";
 import {useState} from "react";
-import "../styles/SeatMain.css"
+import currentSeat from "./CurrentSeat";
+import RoomLayout from "./RoomLayout";
+import "../styles/SeatMain.css";
+
 
 function SeatMain(){
-  const [roomNum, setRoomNum] = useState(1);
+  const [roomNum, setRoomNum] = useState<number>(1);
   const [seatNum, setSeatNum] = useState<number>();
 
   return <div className="seat-main">
@@ -14,11 +17,9 @@ function SeatMain(){
         <button onClick={() => setRoomNum(2)} className={roomNum == 2 ? "bg-blue text-white" : "bg-lightBlue"}>제2열람실
         </button>
       </div>
-      <div>
-        {roomNum}좌석배치도
-      </div>
+      <RoomLayout type={roomNum} seatNum={seatNum} setSeatNum={setSeatNum}/>
     </div>
-    <SideBar/>
+    <SideBar currentSeat={{roomNum: roomNum, totalSeat: 120, restSeat: 12, selectSeat: seatNum}}/>
   </div>;
 }
 
