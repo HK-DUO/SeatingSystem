@@ -1,5 +1,7 @@
+import {Link} from "react-router-dom";
 import "../styles/SideMenu.css";
-import {YuseonIc} from "../assets/img/index";
+import {YuseonIc} from "../assets/svg";
+
 
 function SideMenu() {
   return <nav className="side-menu">
@@ -7,10 +9,10 @@ function SideMenu() {
       <img src={YuseonIc} alt="yuseong-icon"/><span>노은도서관</span>
     </h1>
     <div>
-      <a href="/">좌석예약</a>
-      <a href="/suggest">문의사항</a>
+      <Link to="/">좌석예약</Link>
+      <Link to="/suggest">문의사항</Link>
     </div>
-  </nav>;
+  </nav>
 }
 
 export default SideMenu;

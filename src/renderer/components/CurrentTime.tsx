@@ -1,9 +1,16 @@
 import getTime from "../utils/getTime";
+import {useState} from "react";
 
 
 function CurrentTime() {
+  const [time, setTime] = useState(getTime());
+
+  setInterval(() => {
+    setTime(getTime());
+  },1)
+
   return <div className="w-full h-[100px] flex justify-center items-center text-white text-[36px] font-[700]">
-    <span>{getTime()}</span>
+    <span>{time}</span>
   </div>
 }
 
