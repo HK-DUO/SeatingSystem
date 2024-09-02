@@ -1,11 +1,10 @@
 type PropsType = {
-  type: "alert",
   message: string;
   subMessage: string,
   onClickOk: () => void
 };
 
-function Alert({type, message, subMessage, onClickOk}: PropsType) {
+function Alert({message, subMessage, onClickOk}: PropsType) {
   return <div className="bg-blue p-[20px]">
     <h1 className="text-[20px] font-[600] text-center">{message}</h1>
     <p className="mt-[20px] font-[400] whitespace-pre-line">{subMessage}</p>
