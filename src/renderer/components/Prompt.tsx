@@ -2,14 +2,13 @@ import {useState} from "react";
 import "../styles/Prompt.css"
 
 type PropsType = {
-  type: "prompt",
   message: string;
   subMessage: string,
   onClickOk: (input: object) => void,
   onClickCancel: () => void
 }
 
-function Prompt({type, message, subMessage, onClickOk, onClickCancel}: PropsType) {
+function Prompt({message, subMessage, onClickOk, onClickCancel}: PropsType) {
   const [value, setValue] = useState({
     name:"",
     number: "",
