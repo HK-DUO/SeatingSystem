@@ -1,6 +1,6 @@
 // public/electron.js
 import connection from "../backend/db.js";
-const { app, BrowserWindow } = await import("electron");
+const { app, BrowserWindow, ipcMain } = await import("electron");
 const path = await import("path");
 const isDev = await import("electron-is-dev");
 
@@ -34,9 +34,11 @@ function createWindow() {
   mainWindow.focus();
 }
 
-app.whenReady().then(() => {
-  // createWindow();
+function handleTest(event, text) {
+  console.log("test: ", text);
+}
 
+app.whenReady().then(() => {
   // Example: Query the database after creating the window
   connection.query("SELECT * FROM Seat", (error, results) => {
     if (error) {
@@ -45,6 +47,8 @@ app.whenReady().then(() => {
       console.log("Seats:", results);
     }
   });
+
+  ipcMain.on("test", handleTest);
 });
 
 app.on("ready", createWindow);
