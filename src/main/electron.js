@@ -12,8 +12,10 @@ function createWindow() {
     height: 828,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolated: false,
       enableRemoteModule: true,
       devTools: isDev,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
@@ -44,10 +46,10 @@ app.whenReady().then(() => {
     if (error) {
       console.error("Error fetching data:", error);
     } else {
-      console.log("Seats:", results);
+      // console.log("Seats:", results);
+      console.log("db connect success!!");
     }
   });
-
   ipcMain.on("test", handleTest);
 });
 
