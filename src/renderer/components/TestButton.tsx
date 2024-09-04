@@ -1,8 +1,7 @@
 function TestButton() {
-  const { ipcRenderer } = window.require("electron");
 
   const test = () => {
-    ipcRenderer.send("test", "test");
+    window.textInterface.sendMessage("testMessage")
   };
 
   return (
