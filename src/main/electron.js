@@ -35,7 +35,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  createWindow();
+  // createWindow();
 
   // Example: Query the database after creating the window
   connection.query("SELECT * FROM Seat", (error, results) => {

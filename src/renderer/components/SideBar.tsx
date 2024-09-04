@@ -31,7 +31,6 @@ function SideBar({currentSeat}: PropsType) {
       </button>
       <button
         onClick={() => {
-
           prompt("퇴실", "퇴실 후 좌석을 다시 이용하기 위해선 재예약이 필요합니다.\n퇴실 시 본인 좌석 정리,정돈").then((res) => console.log(res))
         }}>퇴실
       </button>
