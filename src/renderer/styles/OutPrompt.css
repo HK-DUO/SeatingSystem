@@ -16,7 +16,7 @@
 }
 
 .outPrompt > p {
-  @apply mt-[20px] font-[400] whitespace-pre-line
+  @apply mt-[20px] font-[400] whitespace-pre-line text-[14px]
 }
 
 .outPrompt > div > button {

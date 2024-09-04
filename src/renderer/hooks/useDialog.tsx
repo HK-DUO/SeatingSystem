@@ -4,8 +4,8 @@ import React from "react";
 type Type = {
   alert: (message?: string, subMessage?: string) => Promise<boolean>
   prompt: (message?: string, subMessage?: string) => Promise<object | undefined>
-  inPrompt: (message?: string,roomNum?:string, seatNum?:string, subMessage?: string) => Promise<object | undefined>
-  outPrompt: (message?: string, roomNum?:string, seatNum?:string, subMessage?: string) => Promise<boolean>
+  inPrompt: (roomNum?:string, seatNum?:string) => Promise<object | undefined>
+  outPrompt: (roomNum?:string, seatNum?:string) => Promise<boolean>
 };
 
 const DialogContext = React.createContext<Type>({

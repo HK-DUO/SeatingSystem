@@ -23,8 +23,6 @@ type PromptState = {
 
 type InPromptState = {
   type:"inPrompt",
-  message: string;
-  subMessage: string,
   onClickOk: (input:object) => void,
   onClickCancel: () => void
   roomNum:string;
@@ -33,8 +31,6 @@ type InPromptState = {
 
 type OutPromptState = {
   type:"outPrompt",
-  message: string;
-  subMessage: string,
   onClickOk: () => void,
   onClickCancel: () => void
   roomNum:string;
@@ -80,14 +76,12 @@ function DialogProvider({children}: PropsType) {
     });
   }
 
-  const inPrompt = (message?: string, subMessage?: string, roomNum?: string, seatNum?: string): Promise<object | undefined> => {
+  const inPrompt = (roomNum?: string, seatNum?: string): Promise<object | undefined> => {
     return new Promise((resolve) => {
       setState({
         type: "inPrompt",
-        message: message ?? '',
         roomNum: roomNum ?? "",
         seatNum: seatNum ?? "",
-        subMessage: subMessage ?? "",
         onClickOk: (input: object) => {
           setState(undefined);
           resolve(input);
@@ -100,12 +94,10 @@ function DialogProvider({children}: PropsType) {
     });
   };
 
-  const outPrompt = (message?: string, subMessage?: string, roomNum?: string, seatNum?: string): Promise<boolean> => {
-    return new Promise((resolve)  => {
+  const outPrompt = (roomNum?: string, seatNum?: string): Promise<boolean> => {
+    return new Promise((resolve) => {
       setState({
         type: "outPrompt",
-        message: message ?? '',
-        subMessage: subMessage ?? "",
         roomNum: roomNum ?? "",
         seatNum: seatNum ?? "",
         onClickOk: () => {
@@ -129,11 +121,11 @@ function DialogProvider({children}: PropsType) {
           <Prompt message={state.message} subMessage={state.subMessage} onClickOk={state.onClickOk}
                   onClickCancel={state.onClickCancel}/>}
       {state.type == "inPrompt" &&
-          <InPrompt message={state.message} roomNum={state.roomNum}
-                    seatNum={state.seatNum} subMessage={state.subMessage} onClickOk={state.onClickOk} onClickCancel={state.onClickCancel}/>}
+          <InPrompt roomNum={state.roomNum} seatNum={state.seatNum} onClickOk={state.onClickOk}
+                    onClickCancel={state.onClickCancel}/>}
       {state.type == "outPrompt" &&
-          <OutPrompt message={state.message} roomNum={state.roomNum}
-                     seatNum={state.seatNum} subMessage={state.subMessage} onClickOk={state.onClickOk} onClickCancel={state.onClickCancel}/>}
+          <OutPrompt roomNum={state.roomNum} seatNum={state.seatNum} onClickOk={state.onClickOk}
+                     onClickCancel={state.onClickCancel}/>}
     </Overlay>}
   </DialogContext.Provider>;
 }

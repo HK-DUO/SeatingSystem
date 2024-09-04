@@ -14,9 +14,25 @@ function Prompt({message, subMessage, onClickOk, onClickCancel}: PropsType) {
     number: "",
   })
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue({...value, [e.target.name]: e.target.value})
+  const onChange = (e: any) => {
+    if(e.target.name == "number"){
+      let nonNumericRegex = /[^0-9-]/;
+      if(e.target.value.length < 14 && !nonNumericRegex.test(e.target.value)) {
+        setValue({...value, [e.target.name]: e.target.value});
+      }
+    } else {
+      setValue({...value, [e.target.name]: e.target.value});
+    }
   }
+
+  const handleKeyDown = (e: any) => {
+    if(e.key !== "Backspace") {
+      if (value.number.length == 3 || value.number.length == 8) {
+        setValue({...value, number: e.target.value + "-"});
+      }
+    }
+  }
+
 
   return <div className="prompt">
     <h1>{message}</h1>
@@ -26,7 +42,7 @@ function Prompt({message, subMessage, onClickOk, onClickCancel}: PropsType) {
     </div>
     <div>
       <label>전화번호</label>
-      <input value={value.number} name="number" onChange={onChange}/>
+      <input value={value.number} name="number" onKeyDown={handleKeyDown} onChange={onChange}/>
     </div>
     <p>{subMessage}</p>
     <div>
