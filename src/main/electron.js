@@ -12,10 +12,9 @@ function createWindow() {
     height: 828,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolated: false,
       enableRemoteModule: true,
       devTools: isDev,
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "src/main/preload.mjs"),
     },
   });
 
@@ -50,7 +49,8 @@ app.whenReady().then(() => {
       console.log("db connect success!!");
     }
   });
-  ipcMain.on("test", handleTest);
+
+  ipcMain.on("testChannel", handleTest);
 });
 
 app.on("ready", createWindow);

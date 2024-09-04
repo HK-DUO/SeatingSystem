@@ -4,6 +4,10 @@ const preloadInterface = "myPreload";
 
 contextBridge.exposeInMainWorld(preloadInterface, {
   listenChannelMessage: (callback) =>
-    ipcRenderer.on("channel", (_, data) => callback(data)),
+    ipcRenderer.on("test", (_, data) => callback(data)),
   sendMessage: (data) => ipcRenderer.send("channel", data),
+});
+
+contextBridge.exposeInMainWorld("textInterface", {
+  sendMessage: (data) => ipcRenderer.send("testChannel", data),
 });
